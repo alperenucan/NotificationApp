@@ -1,0 +1,265 @@
+/* Reset CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Centering form */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+/* Form Page */
+
+.container {
+  padding: 60px 35px 35px 35px;
+  box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
+  background-color: #f8f8f8;
+  border-radius: 0.7rem;
+  transition: all 0.2s;
+  width: 24vw;
+}
+
+.container:hover {
+  transform: translateY(-10px);
+}
+
+.container h1 {
+  font-size: 2.4rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  color: tomato;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  height: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.show-btn {
+  border: 1px solid tomato;
+  border-radius: 0.3rem;
+  display: inline-block;
+  padding: 0.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.show-btn:hover {
+  color: white;
+  background-color: tomato;
+  border: 1px solid tomato;
+}
+
+.user-infos ul li {
+  list-style: none;
+}
+
+.file-container {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-upload {
+  border: 1px solid tomato;
+  border-radius: 0.3rem;
+  display: inline-block;
+  padding: 0.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-upload:hover {
+  color: white;
+  background-color: tomato;
+  border: 1px solid tomato;
+}
+
+.close {
+  background: transparent;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 59%;
+  top: 1.2rem;
+  display: none;
+}
+
+.close:after {
+  content: "";
+  height: 20px;
+  border-left: 4px solid tomato;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 28px;
+}
+
+.close:before {
+  content: "";
+  height: 20px;
+  border-left: 4px solid tomato;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 28px;
+}
+
+.check {
+  transform: rotate(45deg);
+  height: 16px;
+  width: 10px;
+  border-bottom: 5px solid #78b13f;
+  border-right: 5px solid #78b13f;
+  display: none;
+  position: absolute;
+  left: 68%;
+  top: 1.2rem;
+}
+
+.select-container {
+  width: 100%;
+  text-align: center;
+}
+
+.select-container label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(99, 99, 99);
+  margin-bottom: 1rem;
+}
+
+.select-container select {
+  width: 60%;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  border: 1px solid tomato;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.select-container select:focus {
+  border-color: rgba(229, 103, 23, 0.8);
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset,
+    0 0 8px rgba(229, 103, 23, 0.6);
+  outline: 0 none;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* For Status Page */
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+th {
+  font-weight: bold;
+  color: #292b2c;
+}
+
+.state {
+  display: flex;
+  align-items: center;
+}
+
+.state span {
+  flex-basis: 20%;
+}
+
+.unsent-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+td, th {
+  text-align: left;
+  padding: 1rem;
+}
+
+td {
+  border-bottom: 1px solid lightgray;
+  color: white;
+}
+
+.unsent {
+  background-color: #d9534f;
+}
+
+.sent {
+  background-color: #5cb85c;
+}
+
+/* For Responsive */
+
+@media screen and (max-width: 1500px) {
+  .container {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    height: 70vh;
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    height: 100vh;
+    width: 100vw;
+    padding: 10px;
+    border-radius: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container:hover {
+    transform: translateY(0px);
+  }
+
+  form {
+    width: 90%;
+  }
+
+  .container h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+}
