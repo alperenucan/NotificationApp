@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>NOC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="container">
+    <h1>Please Select Connection Type and Upload File</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <div class="select-container">
+            <label for="connection">Connection Type</label> <br/>
+            <select name="connection" id="connection">
+                <option disabled value="">Please select one</option>
+                <option th:value="SMS">SMS</option>
+                <option th:value="Email">E-mail</option>
+            </select>
+        </div>
+
+        <div class="file-container">
+            <label for="file-upload" class="file-upload">Upload File</label>
+            <input type="file" id="file-upload" name="file">
+            <div id="check" class="check"></div>
+            <div id="close" class="close"></div>
+        </div>
+
+        <div class="button-container">
+            <input class="file-upload" type="submit" value="Submit"/>
+        </div>
+    </form>
+</div>
+<script src="js/index.js"></script>
+</body>
+</html>
