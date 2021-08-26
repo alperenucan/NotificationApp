@@ -176,51 +176,6 @@ input[type="file"] {
 
 /* For Status Page */
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  background-color: #f7f7f7;
-}
-
-th {
-  font-weight: bold;
-  color: #292b2c;
-}
-
-.state {
-  display: flex;
-  align-items: center;
-}
-
-.state span {
-  flex-basis: 20%;
-}
-
-.unsent-input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-td, th {
-  text-align: left;
-  padding: 1rem;
-}
-
-td {
-  border-bottom: 1px solid lightgray;
-  color: white;
-}
-
-.unsent {
-  background-color: #d9534f;
-}
-
-.sent {
-  background-color: #5cb85c;
-}
-
 /* For Responsive */
 
 @media screen and (max-width: 1500px) {

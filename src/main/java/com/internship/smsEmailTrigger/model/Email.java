@@ -1,17 +1,19 @@
 package com.internship.smsEmailTrigger.model;
 
 import com.poiji.annotation.ExcelCell;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 
 @Data
 @Entity
-@Table(name = "sms")
+@Table(name = "email")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Sms {
+public class Email {
 
     @Id
     @Column(name="id",nullable = false)

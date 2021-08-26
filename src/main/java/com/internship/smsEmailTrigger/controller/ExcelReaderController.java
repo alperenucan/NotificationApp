@@ -37,7 +37,7 @@ public class ExcelReaderController {
     }
     @PostMapping("/upload")
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes, Model model) throws IOException, InvalidFormatException {
+                                   RedirectAttributes redirectAttributes,@ModelAttribute String type, Model model) throws IOException, InvalidFormatException {
 
 
         if (file.isEmpty()) {
@@ -51,11 +51,12 @@ public class ExcelReaderController {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
-            //model.addAttribute("type", sms);
-            excelReaderService.ReadExcel(file);
+            model.addAttribute("type", type);
+
 
             redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename());
+                    "You successfully uploaded '" + file.getOriginalFilename() + "type : "+type);
+            excelReaderService.ReadExcel(file,type);
 
         } catch (IOException e) {
             e.printStackTrace();

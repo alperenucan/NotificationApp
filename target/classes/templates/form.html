@@ -11,8 +11,8 @@
     <h1>Please Select Connection Type and Upload File</h1>
     <form method="POST" action="/upload" enctype="multipart/form-data">
         <div class="select-container">
-            <label for="connection">Connection Type</label> <br/>
-            <select name="connection" id="connection">
+            <label for="type">Connection Type</label> <br/>
+            <select name="type" id="type">
                 <option disabled value="">Please select one</option>
                 <option th:value="SMS">SMS</option>
                 <option th:value="Email">E-mail</option>

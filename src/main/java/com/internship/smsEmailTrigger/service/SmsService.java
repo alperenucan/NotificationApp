@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SmsService implements ISmsService{
@@ -23,12 +24,11 @@ public class SmsService implements ISmsService{
 //       smsRepository.findAll().forEach(sms -> {
 //           smsList.add(new Sms(sms.getId(),sms.getSent()));
 //       })
-       Sms sms =smsRepository.getById(id);
-       return sms;
+
+        return smsRepository.findById(id).orElseGet(Sms::new);
     }
+    @Override
     public List<Sms> getAllSms(){
-        List<Sms> smsList = new ArrayList<>();
-        smsList =smsRepository.findAll();
-        return smsList;
+        return smsRepository.findAll();
     }
 }

@@ -7,7 +7,9 @@ import com.poiji.bind.Poiji;
 import com.poiji.option.PoijiOptions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -21,7 +23,7 @@ import java.util.List;
 public class ExcelReaderService {
     @Autowired
     private final ISmsRepository smsRepository;
-    public void ReadExcel(MultipartFile file) throws IOException, InvalidFormatException {
+    public void ReadExcel(MultipartFile file, String type) throws IOException, InvalidFormatException {
         PoijiOptions options = PoijiOptions.PoijiOptionsBuilder.settings()
                 .build();
         List<Sms> smsList = Poiji.fromExcel(convert(file), Sms.class,options);
@@ -29,11 +31,19 @@ public class ExcelReaderService {
         System.out.println(smsList);
         for (Sms u: smsList
         ) {
-            idList.add(u.getId());
+            sendSMSWithNOC(u.getId());
+            //idList.add(u.getId());
+
+//            if(type=="SMS"){
+//                sendSMSWithNOC(u.getId());
+//            }
+//            else if (type=="Email"){
+//                sendEmailWithNOC(u.getId());
+//            }
         }
         smsRepository.saveAll(smsList);
-        //return idList;
     }
+
 
     public static File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
@@ -43,4 +53,27 @@ public class ExcelReaderService {
         fos.close();
         return convFile;
     }
+    public ResponseEntity<String> sendSMSWithNOC(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String smsUrl
+                = "https://bildirimdev.anadolusigorta.com.tr/noc/restful/message/user/resendmessage/sms/" + id;
+        ResponseEntity<String> response
+                = restTemplate.exchange(smsUrl, HttpMethod.GET, getHeader(),String.class);
+        return response;
+    }
+    public ResponseEntity<String> sendEmailWithNOC(Long id){
+        RestTemplate restTemplate = new RestTemplate();
+        String smsUrl
+                = "https://bildirimdev.anadolusigorta.com.tr/noc/restful/message/user/resendmessage/email/" + id;
+        ResponseEntity<String> response
+                = restTemplate.exchange(smsUrl, HttpMethod.GET, getHeader(),String.class);
+        return response;
+    }
+
+    public HttpEntity<String> getHeader() {
+        HttpHeaders header = new HttpHeaders();
+        header.add("Cookie","_ga=GA1.3.1446988686.1629199566; _ga_CDVH4VH813=GS1.1.1629199564.1.0.1629199567.0; per=!w17EsPFwv7Qk/SwlKjHYmNxVRpzUaY73gEEkiPqXooYjE+x4fG/sWoST3TpqUlabWnzcmXZUXVVJMg==");
+        return new HttpEntity<String>(header);
+    }
+    // EMAIL TARAFI KODLANACAK // TYPE DÖNDÜRÜLECEK // COOKIE SORULACAK
 }
