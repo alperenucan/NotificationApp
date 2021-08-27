@@ -1,6 +1,7 @@
 package com.internship.smsEmailTrigger.controller;
 
 import com.internship.smsEmailTrigger.model.Sms;
+import com.internship.smsEmailTrigger.model.Type;
 import com.internship.smsEmailTrigger.service.ExcelReaderService;
 import com.internship.smsEmailTrigger.service.SmsService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -33,11 +34,12 @@ public class ExcelReaderController {
 
     @GetMapping("/upload")
     public String index() {
+
         return "form";
     }
     @PostMapping("/upload")
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes,@ModelAttribute String type, Model model) throws IOException, InvalidFormatException {
+                                   RedirectAttributes redirectAttributes, @ModelAttribute Type type, Model model) throws IOException, InvalidFormatException {
 
 
         if (file.isEmpty()) {
@@ -55,7 +57,7 @@ public class ExcelReaderController {
 
 
             redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "type : "+type);
+                    "You successfully uploaded '" + file.getOriginalFilename()+ type.getType());
             excelReaderService.ReadExcel(file,type);
 
         } catch (IOException e) {
@@ -67,6 +69,7 @@ public class ExcelReaderController {
     }
     @GetMapping("/status")
     public String uploadStatus() {
+
         return "status";
     }
 
